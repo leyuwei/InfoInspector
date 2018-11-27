@@ -9,6 +9,9 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.text.InputType;
@@ -41,12 +44,25 @@ public class MainActivity extends Activity {
 	private List<InfoItem> database;
 	private boolean isDatabaseLoaded = false;
 	private ProgressDialog pd;
+	private SharedPreferences sp;
+	private Editor editor;
 
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		// Welcome to new version!
+		sp = this.getSharedPreferences("infoinspect", Context.MODE_PRIVATE);
+		editor = sp.edit();
+		String welcomeStr = "欢迎使用新版本\n更新内容包括：\n* 新增对于Android4以上设备的兼容支持\n* 修正查询结果标题重复的问题\n* 新增对内置存储空间的读取支持";
+		String versionStr = "isNew1127";
+		if (sp.getBoolean(versionStr, true)) {
+			alert(welcomeStr);
+			editor.putBoolean(versionStr, false);
+			editor.commit();
+		}
 		
 		// Load Database into private variables
 		boolean isExternalDatabaseExists = false;

@@ -10,19 +10,23 @@ import android.os.Environment;
 
 public class FileUtils {
 	
+	/**
+	 * 20181127 修正：在运行Android4以上系统的设备上无法使用一级外部存储的问题
+	 * 20181127 修正：在运行Android4以上系统的设备上无需再考虑内置存储，仅在两级外部存储中做选择
+	 **/
 	
 	public static String getSDPath(Context context){
-		File sdDir = null;
+		String sdDir = null;
 		if (isSDExist())
-			sdDir = Environment.getExternalStorageDirectory(); // 获取根目录
+			sdDir = System.getenv("SECONDARY_STORAGE"); // 获取二级存储
 		else
-			sdDir = context.getFilesDir(); // 没有SD卡就返回下载目录
-		return sdDir.toString();
+			sdDir = System.getenv("EXTERNAL_STORAGE"); // 获取一级存储（现在2018年市面上大部分手机都是使用一级存储）
+		return sdDir;
 	}
 
 	
 	public static boolean isSDExist() {
-		return android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
+		return System.getenv("SECONDARY_STORAGE") != null;	// 判别二级外部存储（外部实体SD卡）是否存在
 	}
 	
 	

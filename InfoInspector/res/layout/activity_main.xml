@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="多媒体大楼水电位置查询"
+        android:text="水电位置查询"
         android:textColor="#FF3030"
         android:textSize="20sp" />
 
@@ -123,13 +123,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:textSize="16sp"
         android:layout_marginTop="4dp"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
         android:background="#20000000"
-        android:text="开发: GitHub/leyuwei Build20180821" />
+        android:gravity="center"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:text="开发: GitHub/leyuwei Build20181127"
+        android:textColor="#000000"
+        android:textSize="16sp" />
 
 </RelativeLayout>
