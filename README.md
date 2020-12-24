@@ -1,5 +1,5 @@
 # InfoInspector
-An Offline Android Information Finder based on Excel Files Provided.
+An Offline Android Information Finder based on the Provided Excel Files.
 
 ## Introduction
 
